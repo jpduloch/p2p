@@ -8,8 +8,9 @@ do
     port=$(shuf -i 1025-65535 -n 1)
 done
 
-### generated a random key name
-key=$(mcookie | head -c 10)
+### generated a random keyl, only numerical
+key=$(shuf -i 1000000000-10000000000 -n 1)
+#key=$(mcookie | head -c 10)
 
 ### generate the key pair
 file=keys/$key

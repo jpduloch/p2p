@@ -9,7 +9,7 @@ do
 done
 
 ### generated a random keyl, only numerical
-key=$(shuf -i 1000000000-10000000000 -n 1)
+key=$(shuf -i 100000000-1000000000 -n 1)
 #key=$(mcookie | head -c 10)
 
 ### generate the key pair

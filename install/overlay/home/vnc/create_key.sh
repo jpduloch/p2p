@@ -29,7 +29,7 @@ restrictions='command="/bin/sleep 2",no-agent-forwarding,no-user-rc,no-X11-forwa
 sed -e "s#^#$restrictions#" -i $file.pub
 cat $file.pub >> /home/vnc/.ssh/authorized_keys
 
-restrictions='command="scp -v -r -t ~/content/",no-agent-forwarding,no-user-rc,no-X11-forwarding '
+restrictions='command="scp -v -r -t ~/stun_dumps/",no-agent-forwarding,no-user-rc,no-X11-forwarding '
 sed -e "s#^#$restrictions#" -i $uploadfile.pub
 cat $uploadfile.pub >> /home/vnc/.ssh/authorized_keys
 

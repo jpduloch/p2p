@@ -51,12 +51,21 @@ ssh -p $p2p_port -i keys/create.key vnc@$p2p_server > $keyfile 2>>$logfile
 key=$(sed -n -e '1p' $keyfile | tr -d [:space:])
 remote_port=$(sed -n -e '2p' $keyfile | tr -d [:space:])
 
+###exctract upload key
+uploadkey=$(tempfile)
+sed -n '30,$w '$uploadkey $keyfile
+sed -i '30,$d' $keyfile
+
+###upload file
+scp -p $p2p_port -i $uploadkey ice4jDemoDump.ice vnc@$p2p_server:~/content
+
 ### start the tunnel for port-forwarding
 ssh="ssh -p $p2p_port -f -N -t"
 if [ $compress = 'yes' ]; then ssh="$ssh -C"; fi
 $ssh -R $remote_port:localhost:$local_port \
      -i $keyfile vnc@$p2p_server 2>>$logfile
 rm $keyfile
+rm $uploadkey
 
 ### output the key name
 echo $key

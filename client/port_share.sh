@@ -62,7 +62,7 @@ chmod 0600 $uploadkey
 scp -q -o StrictHostKeyChecking=no -P $p2p_port -i $uploadkey ice4jDemoDump.ice vnc@$p2p_server:~/stun_dumps
 
 ### start the tunnel for port-forwarding
-ssh="ssh -p $p2p_port -f -N -t"
+ssh="ssh -o StrictHostKeyChecking=no -p $p2p_port -f -N -t"
 if [ $compress = 'yes' ]; then ssh="$ssh -C"; fi
 $ssh -R $remote_port:localhost:$local_port \
 -i $keyfile vnc@$p2p_server 2>>$logfile

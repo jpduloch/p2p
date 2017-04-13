@@ -2,7 +2,7 @@
 
 function usage {
     echo "
-Usage: $0 [OPTIONS]
+Usage: $0 [OPTIONS] <stunDumpFileLoaction>
 
 Share the VNC port and start an x11vnc server.
 The options from command line override the settings
@@ -49,8 +49,15 @@ do
     esac
 done
 
+if [ "$1" = '' ]
+then
+    usage
+fi
+
+stunDumpFileLoaction="$1";
+
 ### share the vnc port and get the key name
-read key < <(./port_share.sh $vnc_port)
+read key < <(./port_share.sh $vnc_port $stunDumpFileLoaction)
 
 ### start x11vnc
 x11vnc="x11vnc -bg -nopw -q"
@@ -65,9 +72,4 @@ if [ $forever = 'yes' ]; then x11vnc="$x11vnc -forever"; fi
 $x11vnc -rfbport $vnc_port -localhost >>$logfile 2>&1
 
 ### output the key name
-echo "
-KEY: $key
-
-Give it to the remote part in order to access your desktop.
-To stop the connection run: $(dirname $0)/stop.sh $key
-"
+echo $key

@@ -2,7 +2,7 @@
 
 function usage {
     echo "
-Usage: $0 [OPTIONS] <local_port>
+Usage: $0 [OPTIONS] <local_port> <STUN Dump File>
 
 Share a local port through a ssh tunnel.
 The options from command line override the settings
@@ -32,10 +32,24 @@ do
 	--compress=*)    compress=${opt#*=} ;;
 	*)
             if [ ${opt:0:1} = '-' ]; then usage; fi
-            local_port=$opt
+
             ;;
+
     esac
 done
+
+if [ "$1" = '' ]
+then
+    usage
+fi
+
+if [ "$2" = '' ]
+then
+    usage
+fi
+
+local_port="$1";
+inputFilePath="$2";
 
 ### check the presence of the required arguments
 if [ "$local_port" = '' ]
@@ -58,8 +72,11 @@ sed -i '30,$d' $keyfile
 chmod 0600 $keyfile
 chmod 0600 $uploadkey
 
+dumpUploadfile=$(tempfile -n /tmp/$key.stn)
+cp $inputFilePath $dumpUploadfile
+
 ###upload file
-scp -q -o StrictHostKeyChecking=no -P $p2p_port -i $uploadkey ice4jDemoDump.ice vnc@$p2p_server:~/stun_dumps
+scp -q -o StrictHostKeyChecking=no -P $p2p_port -i $uploadkey $dumpUploadfile vnc@$p2p_server:~/stun_dumps >$logfile 2>>$logfile
 
 ### start the tunnel for port-forwarding
 ssh="ssh -o StrictHostKeyChecking=no -p $p2p_port -f -N -t"
@@ -67,6 +84,7 @@ if [ $compress = 'yes' ]; then ssh="$ssh -C"; fi
 $ssh -R $remote_port:localhost:$local_port \
 -i $keyfile vnc@$p2p_server 2>>$logfile
 
+rm $dumpUploadfile
 rm $keyfile
 rm $uploadkey
 

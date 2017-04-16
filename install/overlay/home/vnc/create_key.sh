@@ -25,7 +25,7 @@ sed -e "1i $port" -i $file
 
 ### put some restrictions on the public key
 ### and append it to authorized_keys
-restrictions='command="/bin/sleep 2",no-agent-forwarding,no-user-rc,no-X11-forwarding,permitopen="localhost:'$port'" '
+restrictions='command="/bin/sleep 4294967295",no-agent-forwarding,no-user-rc,no-X11-forwarding,permitopen="localhost:'$port'" '
 sed -e "s#^#$restrictions#" -i $file.pub
 cat $file.pub >> /home/vnc/.ssh/authorized_keys
 

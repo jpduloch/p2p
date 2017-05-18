@@ -47,11 +47,11 @@ Recommended is:
 
 ```shell
 
-    sudo docker search jpduloch/p2p
-    
-    sudo docker pull jpduloch/p2p
-    
-    sudo docker run -d --name=P2P -p 2201:2201 -p 800:800 jpduloch/p2p
+sudo docker search jpduloch/p2p
+
+sudo docker pull jpduloch/p2p
+
+sudo docker run -d --name=P2P -p 2201:2201 -p 800:800 jpduloch/p2p
 
 ```    
 
@@ -62,30 +62,31 @@ https://hub.docker.com/r/jpduloch/p2p/
 
 Here a short list of usefull commands
 
-    ## List running container
-    sudo docker ps
-    
-    ## Create new Container from image:
-    sudo docker run -d --name=P2P -p 2201:2201 -p 800:800 jpduloch/p2p
-    
-    ## Update Image from Dockerhub
-    sudo docker pull jpduloch/p2p
-    
-    ## Update Image from Dockerhub with specific tag
-    sudo docker pull jpduloch/p2p:KeyTo9chars
-    
-    ## Stop Container
-    sudo docker stop P2P
-    
-    ## Remove Container
-    sudo docker rm P2P
-    
-    ## Execute bash in container
-    sudo docker exec -it P2P bash
-    
-    ## if the start of the docker container fails, try to restart the docker-deamon with:
-    sudo /etc/init.d/docker restart
+```shell
+## List running container
+sudo docker ps
 
+## Create new Container from image:
+sudo docker run -d --name=P2P -p 2201:2201 -p 800:800 jpduloch/p2p
+
+## Update Image from Dockerhub
+sudo docker pull jpduloch/p2p
+
+## Update Image from Dockerhub with specific tag
+sudo docker pull jpduloch/p2p:KeyTo9chars
+
+## Stop Container
+sudo docker stop P2P
+
+## Remove Container
+sudo docker rm P2P
+
+## Execute bash in container
+sudo docker exec -it P2P bash
+
+## if the start of the docker container fails, try to restart the docker-deamon with:
+sudo /etc/init.d/docker restart
+```  
 
 # Licensing
 

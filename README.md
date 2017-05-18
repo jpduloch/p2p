@@ -32,23 +32,25 @@ Docker Environment has to be installed.
 Follow this guides:
 https://docs.docker.com/engine/installation/
 
-    Or run the following command:
-    #+BEGIN_EXAMPLE
-    sudo apt-get install docker.io
-    #+END_EXAMPLE
+Or run the following command:
 
-The Server must be reachable over IP or DNS on 2 differest ports
+    ```bash 
+    sudo apt-get install docker.io
+    ```
+The Server must be reachable over IP or DNS on 2 different ports
 
 Recommended is:
-    - HTTP: 800
-    - ssh: 2201
+ - HTTP: 800
+ - ssh: 2201
 
 ### Pulling it from DockerHub
 
+    ```bash 
     sudo docker search jpduloch/p2p
     sudo docker pull jpduloch/p2p
     sudo docker run -d --name=P2P -p 2201:2201 -p 800:800 jpduloch/p2p
-
+    ```
+    
 For more details about this DockerHub image see:
 https://hub.docker.com/r/jpduloch/p2p/
 
@@ -56,7 +58,8 @@ https://hub.docker.com/r/jpduloch/p2p/
 
 Here a short list of usefull commands
 
-    List running container
+    ```bash 
+    ##List running container
     sudo docker ps
     
     Create new Container from image:
@@ -79,7 +82,7 @@ Here a short list of usefull commands
     
     if the start of the docker container fails, try to restart the docker-deamon with:
     sudo /etc/init.d/docker restart
-
+    ```
 
 # Licensing
 

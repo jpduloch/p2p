@@ -18,73 +18,69 @@ The DockerPackage is automaticly Build on DockerHub, on every commit.
 [DockerHub](https://hub.docker.com/r/jpduloch/p2p/)
 
 
-* Getting Started
+# Getting Started
 
-** Installation of a P2P server
+## Installation of a P2P server
 
-   This server should be run as Docker-Container.
-   (Other installations are not maintained in this repository)
+This server should be run as Docker-Container.
+(Other installations are not maintained in this repository)
 
-*** Prerequisites
+### Prerequisites
 
-    Docker Environment has to be installed.
+Docker Environment has to be installed.
 
-    Follow this guides:
-    https://docs.docker.com/engine/installation/
+Follow this guides:
+https://docs.docker.com/engine/installation/
 
     Or run the following command:
     #+BEGIN_EXAMPLE
     sudo apt-get install docker.io
     #+END_EXAMPLE
 
+The Server must be reachable over IP or DNS on 2 differest ports
 
-    The Server must be reachable over IP or DNS on 2 differest ports
+Recommended is:
+    - HTTP: 800
+    - ssh: 2201
 
-    Recommended is:
-        - HTTP: 800
-        - ssh: 2201
+### Pulling it from DockerHub
 
-*** Pulling it from DockerHub
-
-    #+BEGIN_EXAMPLE
     sudo docker search jpduloch/p2p
     sudo docker pull jpduloch/p2p
     sudo docker run -d --name=P2P -p 2201:2201 -p 800:800 jpduloch/p2p
-    #+END_EXAMPLE
 
-    For more details about this DockerHub image see:
-    https://hub.docker.com/r/jpduloch/p2p/
+For more details about this DockerHub image see:
+https://hub.docker.com/r/jpduloch/p2p/
 
-* Maintaining server
+# Maintaining server
 
 Here a short list of usefull commands
 
-    #+BEGIN_EXAMPLE
-### List running container
-sudo docker ps
+    List running container
+    sudo docker ps
+    
+    Create new Container from image:
+    sudo docker run -d --name=P2P -p 2201:2201 -p 800:800 jpduloch/p2p
+    
+    Update Image from Dockerhub
+    sudo docker pull jpduloch/p2p
+    
+    Update Image from Dockerhub with specific tag
+    sudo docker pull jpduloch/p2p:KeyTo9chars
+    
+    Stop Container
+    sudo docker stop P2P
+    
+    Remove Container
+    sudo docker rm P2P
+    
+    Execute bash in container
+    sudo docker exec -it P2P bash
+    
+    if the start of the docker container fails, try to restart the docker-deamon with:
+    sudo /etc/init.d/docker restart
 
-### Create new Container from image:
-sudo docker run -d --name=P2P -p 2201:2201 -p 800:800 jpduloch/p2p
 
-### Update Image from Dockerhub
-sudo docker pull jpduloch/p2p
+# Licensing
 
-### Update Image from Dockerhub with specific tag
-sudo docker pull jpduloch/p2p:KeyTo9chars
-
-### Stop Container
-sudo docker stop P2P
-
-### Remove Container
-sudo docker rm P2P
-
-### Execute bash in container
-sudo docker exec -it P2P bash
-
-### if the start of the docker container fails, try to restart the docker-deamon with:
-sudo /etc/init.d/docker restart
-    #+END_EXAMPLE
-
-* Licensing
-
-    The Project remains under GNU General Public License v3.0
+The Project remains under GNU General Public License v3.0

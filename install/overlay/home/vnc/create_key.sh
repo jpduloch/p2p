@@ -16,10 +16,6 @@ key=$(shuf -i 100000000-1000000000 -n 1)
 file=keys/$key
 ssh-keygen -t rsa -f $file -q -N ''
 
-### Upload key
-uploadfile=keys/$key-upload
-ssh-keygen -t rsa -f $uploadfile -q -N ''
-
 ### insert the port to the first line of the private key
 sed -e "1i $port" -i $file
 
@@ -29,11 +25,6 @@ restrictions='command="/bin/sleep 4294967295",no-agent-forwarding,no-user-rc,no-
 sed -e "s#^#$restrictions#" -i $file.pub
 cat $file.pub >> /home/vnc/.ssh/authorized_keys
 
-restrictions='command="scp -v -r -t ~/stun_dumps/",no-agent-forwarding,no-user-rc,no-X11-forwarding '
-sed -e "s#^#$restrictions#" -i $uploadfile.pub
-cat $uploadfile.pub >> /home/vnc/.ssh/authorized_keys
-
 ### output the private key
 echo $key
 cat $file
-cat $uploadfile

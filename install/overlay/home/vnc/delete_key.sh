@@ -13,4 +13,4 @@ cd /home/vnc/
 sed -e "/localhost:$port/ d" -i .ssh/authorized_keys
 
 ### remove the key files
-rm $file $file.pub $file-upload $file-upload.pub stun_dumps/$key.stn
+rm $file $file.pub

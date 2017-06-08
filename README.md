@@ -88,6 +88,19 @@ sudo docker exec -it P2P bash
 sudo /etc/init.d/docker restart
 ```  
 
+## Count Connections
+
+```shell
+## Execute bash in container
+sudo docker exec -it P2P bash
+
+## Traverse to Home directory
+cd /home/vnc
+
+## Show contents of log-file
+cat p2p.log
+```  
+
 # Licensing
 
 The Project remains under GNU General Public License v3.0

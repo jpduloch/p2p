@@ -12,5 +12,8 @@ port=$(head 1 $file)
 cd /home/vnc/
 sed -e "/localhost:$port/ d" -i .ssh/authorized_keys
 
+### Writing Log
+echo $(date -u) ": Key removed" >> p2p.log
+
 ### remove the key files
 rm $file $file.pub

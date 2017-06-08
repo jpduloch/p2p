@@ -25,6 +25,9 @@ restrictions='command="/bin/sleep 4294967295",no-agent-forwarding,no-user-rc,no-
 sed -e "s#^#$restrictions#" -i $file.pub
 cat $file.pub >> /home/vnc/.ssh/authorized_keys
 
+### Writing Log
+echo $(date -u) ": Key generated" >> p2p.log
+
 ### output the private key
 echo $key
 cat $file
